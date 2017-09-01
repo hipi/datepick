@@ -36,11 +36,26 @@
 ```
 ## 示例
  用法$.datepick("#main1", "date");
-    | 属性        | 价格   | 
-    | --------   | -----:   | 
-    | 选择器       | 例```#mian``` |  
-    | 模式        | ```date```日期点选择```daterange```日期范围选择     |  
-   
+   
+   <table>
+        <tr>
+            <th>属性</th>
+            <th>api</th>
+            
+        </tr>
+        <tr>
+            <th>选择器</th>
+            <th>例```#mian```</th>
+            
+        </tr>
+        <tr>
+            <th>模式</th>
+            <th>/```date```日期点选择```daterange```日期范围选择</th>
+            
+        </tr>
+        
+    </table>
+
 
 
 

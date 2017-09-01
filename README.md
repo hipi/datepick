@@ -40,7 +40,7 @@
 ### Attributes
 | 属性       |    参数  |
 |---------- |-------- |
-| 选择器 | #mian | 
+| 选择器 | 类似JQuery的选择器 例：#mian | 
 | 模式-change | date：日期点选择 daterange：日期范围选择 | 
 
 

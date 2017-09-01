@@ -34,3 +34,5 @@
 
 </html>
 ```
+## 示例
+![img](https://github.com/chenyeah/datepick/raw/master/gif.gif) 

@@ -1,0 +1,109 @@
+.datepick {
+    position: relative;
+    width: 183px;
+    user-select: none;
+    .datepick-input {
+        height: 26px;
+        padding: 0 6px;
+        border-radius: 4px;
+        border: 1px solid #d1dbe5;
+        outline: none;
+    }
+    .datepick-pickDiv {
+        width: 520px; // height: 282px;
+        border: 1px solid #d1dbe5;
+        box-shadow: 0 2px 6px #ccc;
+        margin: 4px 0;
+        display: none;
+        background: #fff;
+        z-index: 999;
+        color: #48576a;
+        line-height: 20px;
+        .body {
+            display: flex;
+            .content {
+                flex: 1;
+                &:first-child {
+                    border-right: 1px solid #d1dbe5;
+                }
+                padding: 16px;
+                .header {
+                    position: relative;
+                    text-align: center;
+                    height: 28px;
+                    button {
+                        font-size: 12px;
+                        color: #97a8be;
+                        border: 0;
+                        background: transparent;
+                        cursor: pointer;
+                        outline: none;
+                        margin-top: 3px;
+                    }
+                    .arrow-left {
+                        float: left;
+                    }
+                    .arrow-right {
+                        float: right;
+                    }
+                    div {
+                        font-size: 14px;
+                        margin-left: 50px;
+                        margin-right: 50px;
+                    }
+                }
+                table {
+                    width: 100%;
+                    font-size: 12px;
+                    user-select: none;
+                }
+                ul {
+                    overflow: hidden;
+                    margin: 0;
+                    padding: 0;
+                    li {
+                        user-select: none;
+                        font-size: 12px;
+                        list-style: none;
+                        float: left;
+                        width: 32px;
+                        height: 32px;
+                        box-sizing: border-box;
+                        text-align: center;
+                        line-height: 32px;
+                        cursor: pointer;
+                        &.in:hover {
+                            background-color: #e4e8f1;
+                        }
+                        &.timein-inrange {
+                            background-color: #d2ecff;
+                        }
+                        &.inrange {
+                            background-color: #d2ecff;
+                        }
+                        &.timein-active {
+                            background-color: #20a0ff;
+                            color: #fff;
+                        }
+                        &.timein-activeEnd {
+                            background-color: #20a0ff;
+                            color: #fff;
+                        }
+                        &.active {
+                            background-color: #20a0ff;
+                            color: #fff;
+                        }
+                        &.in.activeEnd {
+                            background-color: #20a0ff;
+                            color: #fff;
+                        }
+                        &.active:hover {
+                            background-color: #20a0ff;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

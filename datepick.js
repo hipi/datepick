@@ -261,7 +261,7 @@ $.extend({
                         $(this).addClass("timein-inrange");
                     }
                 })
-                if(_picktimes=1){
+                if(_picktimes==1){
                     _el.find("li.in").removeClass("timein-active").removeClass("timein-inrange").removeClass("timein-activeEnd");
                 }
             } else { //选择第一个时间后的翻页

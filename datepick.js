@@ -227,13 +227,13 @@ $.extend({
                     })
                 }
                 if (nowStartyaer == changerightyear && nowStartmonth == changerightmonth) {
-                    console.log("asdasd")
+                    
                     _el.find(".datepick-li-right li.in").each(function (i) {
                         $(this).html() == nowStartdate && $(this).addClass("timein-active") && (timeactiveStartIn = i);
                     })
                 }
                 if ((nowEndyaer == changeyear && nowEndmonth == changemonth) || (nowEndyaer == changerightyear && nowEndmonth == changerightmonth)) {
-                    console.log("in")
+                    
                     if (nowEndyaer == changeyear && nowEndmonth == changemonth) {
                         _el.find(".datepick-li-left li.in").each(function (i) {
                             $(this).html() == nowEnddate && $(this).addClass("timein-active") && (timeactiveEndIn = i);
@@ -295,6 +295,7 @@ $.extend({
         }
         _el.find(".datepick-input").focus(function () { //input 有时间 恢复时间
             _picktimes = 0; // 还原日期点击次数
+
             if ($(this).val()) {
                 if (_model == 1) { //model1
                     var nowInputVal = $(this).val().trim();
@@ -319,6 +320,7 @@ $.extend({
                         return;
                     }
                 } else { //model2
+                    _el.off('mouseover', "li.in");
                     // TODO  日期范围选择
                      var nowInputVal = $(this).val().trim();
                     var nowStartyaer = Number(nowInputVal.split(" - ")[0].split('-')[0]);
@@ -355,17 +357,18 @@ $.extend({
                         });
                         _el.find(".datepick-li-left .in:gt(" + timeactiveStartIn + ")").addClass("timein-inrange");
 
-                        _el.find(".datepick-li-right .in.timein-activeEnd").prevAll().addClass("timein-inrange");
+                        _el.find(".datepick-li-right .in.timein-activeEnd").prevAll(".in").addClass("timein-inrange");
+                        
 
                     }
                         if( new Date(nowStartyaer, nowStartmonth).getFullYear() < nowEndyaer||(new Date(nowStartyaer, nowStartmonth).getFullYear() == nowEndyaer&&new Date(nowStartyaer, nowStartmonth).getMonth() + 1 < nowEndmonth)){
 
-                        _el.find(".datepick-li-right .in").addClass("timein-inrange");
+                        _el.find(".datepick-li-right li.in").addClass("timein-inrange");
                         var timeactiveStartIn;
                         _el.find(".datepick-li-left li.in").each(function (i) {
                             $(this).html() == nowStartdate && $(this).addClass("timein-active") && (timeactiveStartIn = i);
                         });
-                        _el.find(".datepick-li-left .in:gt(" + timeactiveStartIn + ")").addClass("timein-inrange");
+                        _el.find(".datepick-li-left li.in:gt(" + timeactiveStartIn + ")").addClass("timein-inrange");
                     } 
 
 
@@ -373,6 +376,10 @@ $.extend({
                     /* _el.find("li").removeClass("active").removeClass("inrange").removeClass("activeEnd");
                     renderOriginalDaterange(); */                   
                 }
+
+            }else{
+                _el.find("li").removeClass("active").removeClass("inrange").removeClass("activeEnd");
+                _el.off('mouseover', "li.in");
 
             }
         })

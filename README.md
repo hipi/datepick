@@ -35,4 +35,13 @@
 </html>
 ```
 ## 示例
+ 用法$.datepick("#main1", "date");
+    | 属性        | 价格   | 
+    | --------   | -----:   | 
+    | 选择器       | 例```#mian``` |  
+    | 模式        | ```date```日期点选择```daterange```日期范围选择     |  
+   
+
+
+
 ![img](https://github.com/chenyeah/datepick/raw/master/gif.gif) 

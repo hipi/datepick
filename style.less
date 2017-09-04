@@ -71,7 +71,9 @@
                         box-sizing: border-box;
                         text-align: center;
                         line-height: 32px;
-                        cursor: pointer;
+                        &.in{
+                            cursor: pointer;
+                        }
                         &.in:hover {
                             background-color: #e4e8f1;
                         }
@@ -92,6 +94,10 @@
                         &.active {
                             background-color: #20a0ff;
                             color: #fff;
+                        }
+                        &.movelessactive {
+                            background-color: #e4e8f1;
+                            color: #48576a;
                         }
                         &.in.activeEnd {
                             background-color: #20a0ff;

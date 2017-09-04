@@ -106,8 +106,6 @@ $.extend({
                 return false
             }
         }
-
-
         /* 切换年月事件  贼烦*/
         var changeDate = function (leftyear, leftmonth) {
             var nowpickleftyear = Number(_el.find(".datepick-y-left").html());
@@ -184,8 +182,6 @@ $.extend({
                 }
             }
         });
-
-
         var renderOriginalDate = function () {
             var nowInputVal = _el.find(".datepick-input").val().trim();
             if (nowInputVal.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/)) {
@@ -215,7 +211,6 @@ $.extend({
                 var changemonth = Number(_el.find(".datepick-m-left").html());
                 var changerightyear = Number(_el.find(".datepick-y-right").html());
                 var changerightmonth = Number(_el.find(".datepick-m-right").html());
-
                 var timeactiveStartIn;
                 var timeactiveEndIn;
                 var startTime = new Date(nowStartyaer, nowStartmonth - 1, nowStartdate).getTime();
@@ -227,13 +222,13 @@ $.extend({
                     })
                 }
                 if (nowStartyaer == changerightyear && nowStartmonth == changerightmonth) {
-                    
+
                     _el.find(".datepick-li-right li.in").each(function (i) {
                         $(this).html() == nowStartdate && $(this).addClass("timein-active") && (timeactiveStartIn = i);
                     })
                 }
                 if ((nowEndyaer == changeyear && nowEndmonth == changemonth) || (nowEndyaer == changerightyear && nowEndmonth == changerightmonth)) {
-                    
+
                     if (nowEndyaer == changeyear && nowEndmonth == changemonth) {
                         _el.find(".datepick-li-left li.in").each(function (i) {
                             $(this).html() == nowEnddate && $(this).addClass("timein-active") && (timeactiveEndIn = i);
@@ -261,7 +256,7 @@ $.extend({
                         $(this).addClass("timein-inrange");
                     }
                 })
-                if(_picktimes==1){
+                if (_picktimes == 1) {
                     _el.find("li.in").removeClass("timein-active").removeClass("timein-inrange").removeClass("timein-activeEnd");
                 }
             } else { //选择第一个时间后的翻页
@@ -322,7 +317,7 @@ $.extend({
                 } else { //model2
                     _el.off('mouseover', "li.in");
                     // TODO  日期范围选择
-                     var nowInputVal = $(this).val().trim();
+                    var nowInputVal = $(this).val().trim();
                     var nowStartyaer = Number(nowInputVal.split(" - ")[0].split('-')[0]);
                     var nowStartmonth = Number(nowInputVal.split(" - ")[0].split('-')[1]);
                     var nowStartdate = Number(nowInputVal.split(" - ")[0].split('-')[2]);
@@ -343,11 +338,9 @@ $.extend({
                         _el.find(".datepick-li-left li.in").each(function (i) {
                             $(this).html() == nowEnddate && $(this).addClass("timein-activeEnd") && (timeactiveEndIn = i);
                         });
-                        console.log(timeactiveStartIn, timeactiveEndIn)
                         _el.find("li.in:gt(" + timeactiveStartIn + "):lt(" + (timeactiveEndIn - timeactiveStartIn) + ")").addClass("timein-inrange");
                     }
                     if (new Date(nowStartyaer, nowStartmonth).getFullYear() == nowEndyaer && new Date(nowStartyaer, nowStartmonth).getMonth() + 1 == nowEndmonth) {
-
                         _el.find(".datepick-li-right .in").each(function () {
                             $(this).html() == nowEnddate && $(this).addClass("timein-activeEnd");
                         });
@@ -358,29 +351,22 @@ $.extend({
                         _el.find(".datepick-li-left .in:gt(" + timeactiveStartIn + ")").addClass("timein-inrange");
 
                         _el.find(".datepick-li-right .in.timein-activeEnd").prevAll(".in").addClass("timein-inrange");
-                        
-
                     }
-                        if( new Date(nowStartyaer, nowStartmonth).getFullYear() < nowEndyaer||(new Date(nowStartyaer, nowStartmonth).getFullYear() == nowEndyaer&&new Date(nowStartyaer, nowStartmonth).getMonth() + 1 < nowEndmonth)){
-
+                    if (new Date(nowStartyaer, nowStartmonth).getFullYear() < nowEndyaer || (new Date(nowStartyaer, nowStartmonth).getFullYear() == nowEndyaer && new Date(nowStartyaer, nowStartmonth).getMonth() + 1 < nowEndmonth)) {
                         _el.find(".datepick-li-right li.in").addClass("timein-inrange");
                         var timeactiveStartIn;
                         _el.find(".datepick-li-left li.in").each(function (i) {
                             $(this).html() == nowStartdate && $(this).addClass("timein-active") && (timeactiveStartIn = i);
                         });
                         _el.find(".datepick-li-left li.in:gt(" + timeactiveStartIn + ")").addClass("timein-inrange");
-                    } 
-
-
+                    }
                     /* TODO 方案2 */
                     /* _el.find("li").removeClass("active").removeClass("inrange").removeClass("activeEnd");
-                    renderOriginalDaterange(); */                   
+                    renderOriginalDaterange(); */
                 }
-
-            }else{
+            } else {
                 _el.find("li").removeClass("active").removeClass("inrange").removeClass("activeEnd");
                 _el.off('mouseover', "li.in");
-
             }
         })
         /* 默认本月和下一个月*/
@@ -398,7 +384,6 @@ $.extend({
                     wepickmonth = 0 + String(wepickmonth);
                 }
                 var wepickday = Number($(this).html());
-
                 if (wepickday < 10) {
                     wepickday = 0 + String(wepickday);
                 }
@@ -423,7 +408,6 @@ $.extend({
                     var firstpickTime = new Date(firstpickyear, firstpickmonth - 1, firstpickdate).getTime();
                     $(this).addClass("active");
                     _el.on('mouseover', "li.in", function () {
-                       
                         var changeyear = Number(_el.find(".datepick-y-left").html());
                         var changemonth = Number(_el.find(".datepick-m-left").html());
                         var changerightyear = Number(_el.find(".datepick-y-right").html());
@@ -431,6 +415,12 @@ $.extend({
                         /* 左边 */
                         if ($(this).parent().is(".datepick-li-left")) {
                             var moveTime = new Date(changeyear, changemonth - 1, $(this).html()).getTime();
+
+                            if (moveTime < firstpickTime) {
+                                $(this).parent().find(".active").addClass("movelessactive");
+                            } else {
+                                _el.find(".movelessactive").removeClass("movelessactive")
+                            }
                             _el.find(".datepick-li-left li.in").each(function (i) {
                                 $(this).removeClass("activeEnd");
                                 var alldate = Number($(this).html());
@@ -448,12 +438,18 @@ $.extend({
                             })
                         } else { //右边
                             var moveTime = new Date(changerightyear, changerightmonth - 1, $(this).html()).getTime();
+                            if (moveTime < firstpickTime) {
+                                $(this).parent().find(".active").addClass("movelessactive");
+                            } else {
+                                _el.find(".movelessactive").removeClass("movelessactive")
+                            }
                             _el.find(".datepick-li-left li.in").each(function (i) {
                                 $(this).removeClass("activeEnd");
                                 var alldate = Number($(this).html());
                                 var eTime = new Date(changeyear, changemonth - 1, alldate).getTime();
                                 if (eTime > firstpickTime) {
                                     $(this).addClass("inrange");
+
                                 } else {
                                     $(this).removeClass("inrange").removeClass("activeEnd");
                                 }
@@ -461,19 +457,16 @@ $.extend({
                             _el.find(".datepick-li-right li.in").each(function (i) {
                                 $(this).removeClass("activeEnd");
                                 var alldate = Number($(this).html());
-
                                 var eTime = new Date(changerightyear, changerightmonth - 1, alldate).getTime();
-
-
                                 if (eTime > firstpickTime && eTime < moveTime) {
-
                                     $(this).addClass("inrange");
+
                                 } else if (eTime == moveTime) {
                                     $(this).addClass("activeEnd");
                                 } else {
                                     $(this).removeClass("inrange").removeClass("activeEnd");
-                                }
 
+                                }
                             })
                         }
                     })
@@ -482,14 +475,13 @@ $.extend({
                     secondpickyear = Number($(this).parent().parent().find(".year").html());
                     secondpickdate = Number($(this).html());
                     if (new Date(secondpickyear, secondpickmonth - 1, secondpickdate).getTime() >= new Date(firstpickyear, firstpickmonth - 1, firstpickdate).getTime()) {
-
                         $('this').addClass("active");
                         _el.off('mouseover', "li.in");
                         firstpickmonth = takeTwo(firstpickmonth);
                         firstpickdate = takeTwo(firstpickdate);
                         secondpickmonth = takeTwo(secondpickmonth);
                         secondpickdate = takeTwo(secondpickdate);
-                        // _el.find(".datepick-input").val(`${firstpickyear}-${firstpickmonth}-${firstpickdate} - ${secondpickyear}-${secondpickmonth}-${secondpickdate}`);
+
                         _el.find(".datepick-input").val(firstpickyear + "-" + firstpickmonth + "-" + firstpickdate + " - " + secondpickyear + "-" + secondpickmonth + "-" + secondpickdate);
                         _picktimes = 0;
                         setTimeout(function () {
@@ -503,8 +495,6 @@ $.extend({
                         firstpickmonth = Number($(this).parent().parent().find(".month").html());
                         firstpickyear = Number($(this).parent().parent().find(".year").html());
                         firstpickdate = Number($(this).html());
-
-
                         var firstpickTime = new Date(firstpickyear, firstpickmonth - 1, firstpickdate).getTime();
                         $(this).addClass("active");
                         _el.on('mouseover', "li.in", function () {
@@ -518,52 +508,35 @@ $.extend({
                                 _el.find(".datepick-li-left li.in").each(function (i) {
                                     $(this).removeClass("activeEnd");
                                     var alldate = Number($(this).html());
-
                                     var eTime = new Date(changeyear, changemonth - 1, alldate).getTime();
-
-
                                     if (eTime > firstpickTime && eTime < moveTime) {
-
                                         $(this).addClass("inrange");
                                     } else if (eTime == moveTime) {
                                         $(this).addClass("activeEnd");
                                     } else {
                                         $(this).removeClass("inrange").removeClass("activeEnd");
                                     }
-
                                 })
                                 _el.find(".datepick-li-right li.in").each(function (i) {
                                     $(this).removeClass("inrange").removeClass("activeEnd");
                                 })
-
                             } else { //右边
                                 var moveTime = new Date(changerightyear, changerightmonth - 1, $(this).html()).getTime();
-
-
                                 _el.find(".datepick-li-left li.in").each(function (i) {
                                     $(this).removeClass("activeEnd");
                                     var alldate = Number($(this).html());
-
                                     var eTime = new Date(changeyear, changemonth - 1, alldate).getTime();
-
-
                                     if (eTime > firstpickTime) {
-
                                         $(this).addClass("inrange");
                                     } else {
                                         $(this).removeClass("inrange").removeClass("activeEnd");
                                     }
-
                                 })
                                 _el.find(".datepick-li-right li.in").each(function (i) {
                                     $(this).removeClass("activeEnd");
                                     var alldate = Number($(this).html());
-
                                     var eTime = new Date(changerightyear, changerightmonth - 1, alldate).getTime();
-
-
                                     if (eTime > firstpickTime && eTime < moveTime) {
-
                                         $(this).addClass("inrange");
                                     } else if (eTime == moveTime) {
                                         $(this).addClass("activeEnd");

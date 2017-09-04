@@ -76,6 +76,8 @@
   box-sizing: border-box;
   text-align: center;
   line-height: 32px;
+}
+.datepick .datepick-pickDiv .body .content ul li.in {
   cursor: pointer;
 }
 .datepick .datepick-pickDiv .body .content ul li.in:hover {
@@ -98,6 +100,10 @@
 .datepick .datepick-pickDiv .body .content ul li.active {
   background-color: #20a0ff;
   color: #fff;
+}
+.datepick .datepick-pickDiv .body .content ul li.movelessactive {
+  background-color: #e4e8f1;
+  color: #48576a;
 }
 .datepick .datepick-pickDiv .body .content ul li.in.activeEnd {
   background-color: #20a0ff;

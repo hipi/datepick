@@ -290,11 +290,11 @@ $.extend({
         }
         _el.find(".datepick-input").focus(function () { //input 有时间 恢复时间
             _picktimes = 0; // 还原日期点击次数
-            position();//定位问题
+            position(); //定位问题
             if ($(this).val()) {
                 if (_model == 1) { //model1
                     var nowInputVal = $(this).val().trim();
-                    if (nowInputVal.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/)) {
+                    if (nowInputVal.match(/(([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))-02-29)/)) {
                         var nowyaer = Number(nowInputVal.split('-')[0]);
                         var nowmonth = Number(nowInputVal.split('-')[1]);
                         var nowdate = Number(nowInputVal.split('-')[2]);
@@ -318,51 +318,57 @@ $.extend({
                     _el.off('mouseover', "li.in");
                     // TODO  日期范围选择
                     var nowInputVal = $(this).val().trim();
-                    var nowStartyaer = Number(nowInputVal.split(" - ")[0].split('-')[0]);
-                    var nowStartmonth = Number(nowInputVal.split(" - ")[0].split('-')[1]);
-                    var nowStartdate = Number(nowInputVal.split(" - ")[0].split('-')[2]);
-                    var nowEndyaer = Number(nowInputVal.split(" - ")[1].split('-')[0]);
-                    var nowEndmonth = Number(nowInputVal.split(" - ")[1].split('-')[1]);
-                    var nowEnddate = Number(nowInputVal.split(" - ")[1].split('-')[2]);
-                    _el.find(".datepick-y-left").html(nowStartyaer);
-                    _el.find(".datepick-m-left").html(nowStartmonth);
-                    _el.find("li").removeClass("active").removeClass("inrange").removeClass("activeEnd");
-                    var timeactiveStartIn;
-                    var timeactiveEndIn;
-                    _el.find(".datepick-li-left li.in").each(function (i) {
-                        $(this).html() == nowStartdate && $(this).addClass("timein-active") && (timeactiveStartIn = i);
-                    });
-                    _el.find(".datepick-y-right").html(new Date(nowStartyaer, nowStartmonth).getFullYear());
-                    _el.find(".datepick-m-right").html(new Date(nowStartyaer, nowStartmonth).getMonth() + 1); //有问题 不该加一
-                    if (nowStartyaer == nowEndyaer && nowStartmonth == nowEndmonth) {
-                        _el.find(".datepick-li-left li.in").each(function (i) {
-                            $(this).html() == nowEnddate && $(this).addClass("timein-activeEnd") && (timeactiveEndIn = i);
-                        });
-                        _el.find("li.in:gt(" + timeactiveStartIn + "):lt(" + (timeactiveEndIn - timeactiveStartIn) + ")").addClass("timein-inrange");
-                    }
-                    if (new Date(nowStartyaer, nowStartmonth).getFullYear() == nowEndyaer && new Date(nowStartyaer, nowStartmonth).getMonth() + 1 == nowEndmonth) {
-                        _el.find(".datepick-li-right .in").each(function () {
-                            $(this).html() == nowEnddate && $(this).addClass("timein-activeEnd");
-                        });
+                    if (nowInputVal.split(" - ").length == 2 && nowInputVal.split(" - ")[0].match(/(([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))-02-29)/) && nowInputVal.split(" - ")[1].match(/(([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))-02-29)/)) {
+                        var nowStartyaer = Number(nowInputVal.split(" - ")[0].split('-')[0]);
+                        var nowStartmonth = Number(nowInputVal.split(" - ")[0].split('-')[1]);
+                        var nowStartdate = Number(nowInputVal.split(" - ")[0].split('-')[2]);
+                        var nowEndyaer = Number(nowInputVal.split(" - ")[1].split('-')[0]);
+                        var nowEndmonth = Number(nowInputVal.split(" - ")[1].split('-')[1]);
+                        var nowEnddate = Number(nowInputVal.split(" - ")[1].split('-')[2]);
+                        _el.find(".datepick-y-left").html(nowStartyaer);
+                        _el.find(".datepick-m-left").html(nowStartmonth);
+                        _el.find("li").removeClass("active").removeClass("inrange").removeClass("activeEnd");
                         var timeactiveStartIn;
+                        var timeactiveEndIn;
                         _el.find(".datepick-li-left li.in").each(function (i) {
                             $(this).html() == nowStartdate && $(this).addClass("timein-active") && (timeactiveStartIn = i);
                         });
-                        _el.find(".datepick-li-left .in:gt(" + timeactiveStartIn + ")").addClass("timein-inrange");
+                        _el.find(".datepick-y-right").html(new Date(nowStartyaer, nowStartmonth).getFullYear());
+                        _el.find(".datepick-m-right").html(new Date(nowStartyaer, nowStartmonth).getMonth() + 1); //有问题 不该加一
+                        if (nowStartyaer == nowEndyaer && nowStartmonth == nowEndmonth) {
+                            _el.find(".datepick-li-left li.in").each(function (i) {
+                                $(this).html() == nowEnddate && $(this).addClass("timein-activeEnd") && (timeactiveEndIn = i);
+                            });
+                            _el.find("li.in:gt(" + timeactiveStartIn + "):lt(" + (timeactiveEndIn - timeactiveStartIn) + ")").addClass("timein-inrange");
+                        }
+                        if (new Date(nowStartyaer, nowStartmonth).getFullYear() == nowEndyaer && new Date(nowStartyaer, nowStartmonth).getMonth() + 1 == nowEndmonth) {
+                            _el.find(".datepick-li-right .in").each(function () {
+                                $(this).html() == nowEnddate && $(this).addClass("timein-activeEnd");
+                            });
+                            var timeactiveStartIn;
+                            _el.find(".datepick-li-left li.in").each(function (i) {
+                                $(this).html() == nowStartdate && $(this).addClass("timein-active") && (timeactiveStartIn = i);
+                            });
+                            _el.find(".datepick-li-left .in:gt(" + timeactiveStartIn + ")").addClass("timein-inrange");
 
-                        _el.find(".datepick-li-right .in.timein-activeEnd").prevAll(".in").addClass("timein-inrange");
+                            _el.find(".datepick-li-right .in.timein-activeEnd").prevAll(".in").addClass("timein-inrange");
+                        }
+                        if (new Date(nowStartyaer, nowStartmonth).getFullYear() < nowEndyaer || (new Date(nowStartyaer, nowStartmonth).getFullYear() == nowEndyaer && new Date(nowStartyaer, nowStartmonth).getMonth() + 1 < nowEndmonth)) {
+                            _el.find(".datepick-li-right li.in").addClass("timein-inrange");
+                            var timeactiveStartIn;
+                            _el.find(".datepick-li-left li.in").each(function (i) {
+                                $(this).html() == nowStartdate && $(this).addClass("timein-active") && (timeactiveStartIn = i);
+                            });
+                            _el.find(".datepick-li-left li.in:gt(" + timeactiveStartIn + ")").addClass("timein-inrange");
+                        }
+                        /* TODO 方案2 */
+                        /* _el.find("li").removeClass("active").removeClass("inrange").removeClass("activeEnd");
+                        renderOriginalDaterange(); */
+                    } else {
+                        $(this).val(null);
+                        alert("请输入正确的日期\n\r日期格式：yyyy-mm-dd\n\r例  如：2017-07-01\n\r");
+                        return;
                     }
-                    if (new Date(nowStartyaer, nowStartmonth).getFullYear() < nowEndyaer || (new Date(nowStartyaer, nowStartmonth).getFullYear() == nowEndyaer && new Date(nowStartyaer, nowStartmonth).getMonth() + 1 < nowEndmonth)) {
-                        _el.find(".datepick-li-right li.in").addClass("timein-inrange");
-                        var timeactiveStartIn;
-                        _el.find(".datepick-li-left li.in").each(function (i) {
-                            $(this).html() == nowStartdate && $(this).addClass("timein-active") && (timeactiveStartIn = i);
-                        });
-                        _el.find(".datepick-li-left li.in:gt(" + timeactiveStartIn + ")").addClass("timein-inrange");
-                    }
-                    /* TODO 方案2 */
-                    /* _el.find("li").removeClass("active").removeClass("inrange").removeClass("activeEnd");
-                    renderOriginalDaterange(); */
                 }
             } else {
                 _el.find("li").removeClass("active").removeClass("inrange").removeClass("activeEnd");
@@ -555,7 +561,7 @@ $.extend({
                 e.stopPropagation();
             });
         }
-/* 定位问题 */
+        /* 定位问题 */
         var position = function () {
             var elBottom = function (el) {
                 return $(window).height() - el.height() - el.offset().top + $(document).scrollTop();
@@ -571,9 +577,9 @@ $.extend({
                 }
                 var right = 522 - $(this).width();
                 if (elRight($(this)) < right) {
-                    $(this).find(".datepick-pickDiv").css("left",-522+$(this).width()+elRight($(this)));
+                    $(this).find(".datepick-pickDiv").css("left", -522 + $(this).width() + elRight($(this)));
                 } else {
-                    $(this).find(".datepick-pickDiv").css("left","auto");
+                    $(this).find(".datepick-pickDiv").css("left", "auto");
                     $(this).find(".datepick-pickDiv").css("right", "auto");
                 }
             })

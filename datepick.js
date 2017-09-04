@@ -290,7 +290,7 @@ $.extend({
         }
         _el.find(".datepick-input").focus(function () { //input 有时间 恢复时间
             _picktimes = 0; // 还原日期点击次数
-
+            position();//定位问题
             if ($(this).val()) {
                 if (_model == 1) { //model1
                     var nowInputVal = $(this).val().trim();
@@ -555,5 +555,31 @@ $.extend({
                 e.stopPropagation();
             });
         }
+/* 定位问题 */
+        var position = function () {
+            var elBottom = function (el) {
+                return $(window).height() - el.height() - el.offset().top + $(document).scrollTop();
+            }
+            var elRight = function (el) {
+                return $(window).width() - el.width() - el.offset().left + $(document).scrollLeft();
+            }
+            _el.find(".datepick").each(function () {
+                if (elBottom($(this)) < 300) {
+                    $(this).find(".datepick-pickDiv").css("top", -282);
+                } else {
+                    $(this).find(".datepick-pickDiv").css("top", "auto")
+                }
+                var right = 522 - $(this).width();
+                if (elRight($(this)) < right) {
+                    $(this).find(".datepick-pickDiv").css("left",-522+$(this).width()+elRight($(this)));
+                } else {
+                    $(this).find(".datepick-pickDiv").css("left","auto");
+                    $(this).find(".datepick-pickDiv").css("right", "auto");
+                }
+            })
+        }
+        $(window).scroll(function () {
+            position();
+        });
     } //结束
 });

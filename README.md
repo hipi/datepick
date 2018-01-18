@@ -1,5 +1,5 @@
 # datepick
-基于 jQuery 的日期点选择和日期范围选择
+根据element-ui@1.4.12 版本的日期选择的UI 重制了基于jQuery 的日期点选择和日期范围选择
 ```html
 <!DOCTYPE html>
 <html lang="en">

@@ -1,5 +1,9 @@
 # datepick
-根据element-ui@1.4.12 版本的日期选择的UI 重制了基于jQuery 的日期点选择和日期范围选择
+
+根据 element-ui@1.4.12 版本的日期选择的 UI 重制了基于 jQuery 的日期点选择和日期范围选择
+
+### 示例
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -39,23 +43,22 @@
         $.datepick("#main1", "date");
         $.datepick("#main2", "daterange");
         $.datepick("#main3", "daterange");
-
         $("#main3 input").val("2017-10-28 - 2017-11-19");
-        /* 定位问题 */
     </script>
 </body>
 
 </html>
 ```
-### 示例
- 用法$.datepick("#main1", "date");
+用法
+```js
+$.datepick("#main1", "date");
+```
 
 ### Attributes
-| 属性       |    参数  |
-|---------- |-------- |
-| 选择器 | 类似JQuery的选择器 例：#mian | 
-| 模式-change | date：日期点选择 daterange：日期范围选择 | 
 
+| 属性        |   参数                                   |
+| ----------- | ---------------------------------------- |
+| 选择器      | 类似 JQuery 的选择器 例：#mian           |
+| 模式-change | date：日期点选择 daterange：日期范围选择 |
 
-
-![img](https://github.com/chenyeah/datepick/raw/master/gif.gif) 
+![img](https://github.com/chenyeah/datepick/raw/master/docs/gif.gif)
